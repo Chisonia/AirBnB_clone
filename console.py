@@ -68,7 +68,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         class_name = args[0]
-        if class_name not in models.classes:
+        if class_name not in models.engine.file_storage.FileStorage.ALL_CLASS:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -89,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         class_name = args[0]
-        if class_name not in models.classes:
+        if class_name not in models.engine.file_storage.FileStorage.ALL_CLASS:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -117,7 +117,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         class_name = args[0]
-        if class_name not in models.classes:
+        if class_name not in models.engine.file_storage.FileStorage.ALL_CLASS:
             print("** class doesn't exist **")
             return
         instances = [str(obj) for obj in models.storage.all().values() if type(obj).__name__ == class_name]
