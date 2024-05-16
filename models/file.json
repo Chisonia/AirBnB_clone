@@ -1,0 +1,84 @@
+{
+  "BaseModel.68612d84-1fab-4244-a4ce-fbddacee6e0d": {
+    "id": "68612d84-1fab-4244-a4ce-fbddacee6e0d",
+    "created_at": "2024-05-16T16:50:18.101910",
+    "updated_at": "2024-05-16T16:50:18.103061",
+    "__class__": "BaseModel"
+  },
+  "User.caf193b4-d069-46d7-843c-374cab46ce92": {
+    "id": "caf193b4-d069-46d7-843c-374cab46ce92",
+    "created_at": "2024-05-16T16:50:27.693022",
+    "updated_at": "2024-05-16T16:50:27.693053",
+    "email": "",
+    "password": "",
+    "first_name": "",
+    "last_name": "",
+    "__class__": "User"
+  },
+  "BaseModel.42999458-83fe-41b7-8c2a-0e97eb4c67ca": {
+    "id": "42999458-83fe-41b7-8c2a-0e97eb4c67ca",
+    "created_at": "2024-05-16T16:59:35.400333",
+    "updated_at": "2024-05-16T16:59:35.400381",
+    "__class__": "BaseModel"
+  },
+  "User.6083b579-c83b-40f4-99e8-0bbb773f21c0": {
+    "id": "6083b579-c83b-40f4-99e8-0bbb773f21c0",
+    "created_at": "2024-05-16T16:59:41.761268",
+    "updated_at": "2024-05-16T16:59:41.761311",
+    "email": "",
+    "password": "",
+    "first_name": "",
+    "last_name": "",
+    "__class__": "User"
+  },
+  "User.8aba1460-95ff-4461-914b-1d0da665e125": {
+    "id": "8aba1460-95ff-4461-914b-1d0da665e125",
+    "created_at": "2024-05-16T17:03:13.156187",
+    "updated_at": "2024-05-16T17:03:13.156258",
+    "email": "",
+    "password": "",
+    "first_name": "",
+    "last_name": "",
+    "__class__": "User"
+  },
+  "User.503f154e-a558-4dfa-8116-8a52f432a2a1": {
+    "id": "503f154e-a558-4dfa-8116-8a52f432a2a1",
+    "created_at": "2024-05-16T17:12:38.084017",
+    "updated_at": "2024-05-16T17:12:38.084076",
+    "email": "",
+    "password": "",
+    "first_name": "",
+    "last_name": "",
+    "__class__": "User"
+  },
+  "User.db73939b-9b05-42d2-aa83-9b283f5741dc": {
+    "id": "db73939b-9b05-42d2-aa83-9b283f5741dc",
+    "created_at": "2024-05-16T17:15:15.040681",
+    "updated_at": "2024-05-16T17:15:15.040739",
+    "email": "",
+    "password": "",
+    "first_name": "",
+    "last_name": "",
+    "__class__": "User"
+  },
+  "User.fcc7222f-7218-45d5-81a6-58f73e70000e": {
+    "id": "fcc7222f-7218-45d5-81a6-58f73e70000e",
+    "created_at": "2024-05-16T17:36:11.918382",
+    "updated_at": "2024-05-16T17:36:11.918442",
+    "email": "",
+    "password": "",
+    "first_name": "",
+    "last_name": "",
+    "__class__": "User"
+  },
+  "User.88dc0b99-6f5c-4c83-ba92-cdc46a752a43": {
+    "id": "88dc0b99-6f5c-4c83-ba92-cdc46a752a43",
+    "created_at": "2024-05-16T17:42:55.015724",
+    "updated_at": "2024-05-16T17:42:55.015798",
+    "email": "",
+    "password": "",
+    "first_name": "",
+    "last_name": "",
+    "__class__": "User"
+  }
+}
