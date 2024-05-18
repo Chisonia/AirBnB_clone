@@ -19,7 +19,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(self.base_model.id, str)
         self.assertIsInstance(self.base_model.created_at, datetime)
         self.assertIsInstance(self.base_model.updated_at, datetime)
-        self.assertEqual(self.base_model.created_at, self.base_model.updated_at)
+        self.assertEqual(
+            self.base_model.created_at, self.base_model.updated_at
+            )
 
     def test_init_with_kwargs(self):
         '''Test __init__ with kwargs'''
@@ -39,7 +41,9 @@ class TestBaseModel(unittest.TestCase):
 
     def test_str(self):
         '''Test __str__ method'''
-        string = '[BaseModel] ({}) {}'.format(self.base_model.id, self.base_model.__dict__)
+        string = '[BaseModel] ({}) {}'.format(
+            self.base_model.id, self.base_model.__dict__
+            )
         self.assertEqual(str(self.base_model), string)
 
     def test_save(self):
@@ -47,19 +51,23 @@ class TestBaseModel(unittest.TestCase):
         prev_updated_at = self.base_model.updated_at
         self.base_model.save()
         self.assertNotEqual(self.base_model.updated_at, prev_updated_at)
-
-  
+        
     def test_to_dict(self):
         '''Test to_dict method'''
         model_dict = self.base_model.to_dict()
         self.assertEqual(model_dict['__class__'], 'BaseModel')
         self.assertEqual(model_dict['id'], self.base_model.id)
-        self.assertEqual(model_dict['created_at'], self.base_model.created_at.isoformat())
-        self.assertEqual(model_dict['updated_at'], self.base_model.updated_at.isoformat())
+        self.assertEqual(
+            model_dict['created_at'], self.base_model.created_at.isoformat()
+            )
+        self.assertEqual(
+            model_dict['updated_at'], self.base_model.updated_at.isoformat()
+            )
 
     def test_new_instance_stored(self):
         '''Test that a new instance is added to the storage'''
         self.assertIn(self.base_model, models.storage.all().values())
+
 
 if __name__ == '__main__':
     unittest.main()
