@@ -1,16 +1,18 @@
 #!/usr/bin/python3
+'''This module is the Place class'''
 from models.base_model import BaseModel 
 
+
 class Place(BaseModel):
-    """Place class inherits from BaseModel"""
+    '''Place class inherits from BaseModel'''
 
     def __init__(self, *args, **kwargs):
-        """Initialize Place instance"""
+        '''Initialize Place instance'''
         super().__init__(*args, **kwargs)
-        self.city_id = kwargs.get('city_id', "")
-        self.user_id = kwargs.get('user_id', "")
-        self.name = kwargs.get('name', "")
-        self.description = kwargs.get('description', "")
+        self.city_id = kwargs.get('city_id', '')
+        self.user_id = kwargs.get('user_id', '')
+        self.name = kwargs.get('name', '')
+        self.description = kwargs.get('description', '')
         self.number_rooms = kwargs.get('number_rooms', 0)
         self.number_bathrooms = kwargs.get('number_bathrooms', 0)
         self.max_guest = kwargs.get('max_guest', 0)
@@ -20,6 +22,6 @@ class Place(BaseModel):
         self.amenity_ids = kwargs.get('amenity_ids', [])
 
     def __str__(self):
-        """Return string representation of Place instance"""
+        '''Return string representation of Place instance'''
         place = "[Place] ({}) {}".format(self.id, self.__dict__)
         return place

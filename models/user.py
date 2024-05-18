@@ -1,18 +1,19 @@
 #!/usr/bin/python3
+'''This module is the User class'''
 from models.base_model import BaseModel 
 
 class User(BaseModel):
-    """User class inherits from BaseModel"""
+    '''User class inherits from BaseModel'''
 
     def __init__(self, *args, **kwargs):
-        """Initialize User instance"""
+        '''Initialize User instance'''
         super().__init__(*args, **kwargs)
-        self.email = kwargs.get('email', "")
-        self.password = kwargs.get('password', "")
-        self.first_name = kwargs.get('first_name', "")
-        self.last_name = kwargs.get('last_name', "")
+        self.email = kwargs.get('email', '')
+        self.password = kwargs.get('password', '')
+        self.first_name = kwargs.get('first_name', '')
+        self.last_name = kwargs.get('last_name', '')
 
     def __str__(self):
-        """Return string representation of User instance"""
+        '''Return string representation of User instance'''
         user = "[User] ({}) {}".format(self.id, self.__dict__)
         return user

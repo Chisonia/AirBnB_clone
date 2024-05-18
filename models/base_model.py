@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 '''The module is the Base Model class which is the parent class'''
-# from models.__init__ import storage
 import models
 from datetime import datetime
 from uuid import uuid4
@@ -48,8 +47,8 @@ class BaseModel:
 
         '''method to store obj in dictionary'''
         air_dict = self.__dict__.copy()
-        air_dict["__class__"] = self.__class__.__name__
-        air_dict["created_at"] = self.created_at.isoformat()
-        air_dict["updated_at"] = self.updated_at.isoformat()
+        air_dict['__class__'] = self.__class__.__name__
+        air_dict['created_at'] = self.created_at.isoformat()
+        air_dict['updated_at'] = self.updated_at.isoformat()
         return air_dict
     

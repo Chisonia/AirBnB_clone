@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+'''This module is the User class unittest'''
 import unittest
 from models.user import User
 from models.base_model import BaseModel
@@ -7,23 +8,23 @@ from uuid import uuid4
 
 class TestUser(unittest.TestCase):
     def layOut(self):
-        """Set up test methods"""
+        '''Set up test methods'''
         self.user = User()
 
     def test_inherit(self):
-        """Test that User inherits from BaseModel"""
+        '''Test that User inherits from BaseModel'''
         self.assertIsInstance(self.user, User)
         self.assertTrue(issubclass(type(self.user), BaseModel))
 
     def test_init_without_kwargs(self):
-        """Test __init__ without kwargs"""
+        '''Test __init__ without kwargs'''
         self.assertIsInstance(self.user.id, str)
         self.assertIsInstance(self.user.created_at, datetime)
         self.assertIsInstance(self.user.updated_at, datetime)
-        self.assertEqual(self.user.email, "")
-        self.assertEqual(self.user.password, "")
-        self.assertEqual(self.user.first_name, "")
-        self.assertEqual(self.user.last_name, "")
+        self.assertEqual(self.user.email, '')
+        self.assertEqual(self.user.password, '')
+        self.assertEqual(self.user.first_name, '')
+        self.assertEqual(self.user.last_name, '')
 
     def test_init_with_kwargs(self):
         """Test __init__ with kwargs"""
@@ -48,18 +49,18 @@ class TestUser(unittest.TestCase):
         self.assertEqual(user.last_name, test_dict['last_name'])
 
     def test_str(self):
-        """Test __str__ method"""
-        user_str = "[User] ({}) {}".format(self.user.id, self.user.__dict__)
+        '''Test __str__ method'''
+        user_str = '[User] ({}) {}'.format(self.user.id, self.user.__dict__)
         self.assertEqual(str(self.user), user_str)
 
     def test_save(self):
-        """Test save method"""
-        old_updated_at = self.user.updated_at
+        '''Test save method'''
+        prev_updated_at = self.user.updated_at
         self.user.save()
-        self.assertNotEqual(self.user.updated_at, old_updated_at)
+        self.assertNotEqual(self.user.updated_at, prev_updated_at)
 
     def test_to_dict(self):
-        """Test to_dict method"""
+        '''Test to_dict method'''
         user_dict = self.user.to_dict()
         self.assertEqual(user_dict['__class__'], 'User')
         self.assertEqual(user_dict['id'], self.user.id)
