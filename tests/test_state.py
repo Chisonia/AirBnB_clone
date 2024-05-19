@@ -63,8 +63,11 @@ class TestState(unittest.TestCase):
         self.assertEqual(
             state_dict['created_at'], self.state.created_at.isoformat()
             )
-        self.assertEqual(state_dict['updated_at'], self.state.updated_at.isoformat())
+        self.assertEqual(
+                state_dict['updated_at'], self.state.updated_at.isoformat()
+                )
         self.assertEqual(state_dict['name'], self.state.name)
+
 
 if __name__ == '__main__':
     unittest.main()
