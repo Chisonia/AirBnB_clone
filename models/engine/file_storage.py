@@ -44,27 +44,24 @@ class FileStorage:
             key = "{}.{}".format(obj_dict['__class__'], str(obj.id))
             FileStorage.__objects[key] = obj
 
-            def save(self):
-                '''
-                serializes __objects to the JSON file (path: __file_path)
-                '''
-                obj_serialized = {}
-                for key, value in self.__objects.items():
-                    obj_serialized[key] = value.to_dict()
-                    with open(self.__file_path, "w") as file:
-                        json.dump(obj_serialized, file, indent=2)
+        def save(self):
+            '''
+            serializes __objects to the JSON file (path: __file_path)
+            '''
+            obj_serialized = {}
+            for key, value in self.__objects.items():
+                obj_serialized[key] = value.to_dict()
+                with open(self.__file_path, "w") as file:
+                    json.dump(obj_serialized, file, indent=2)
 
-            def reload(self):
-                try:
-                    with open(self.__file_path, "r") as file:
-                        obj_content = json.load(file)
-                        for key, value in obj_content.items():
-                            class_name = value.get("__class__")
-                            if class_name in self.ALL_CLASS:
-                                new_instance = self.ALL_CLASS[class_name](**value)
-                                self.__objects[key] = new_instance
-                except FileNotFoundError:
-                    pass
-
-  
-
+        def reload(self):
+            try:
+                with open(self.__file_path, "r") as file:
+                    obj_content = json.load(file)
+                for key, value in obj_content.items():
+                    class_name = value.get("__class__")
+                    if class_name in self.ALL_CLASS:
+                        new_instance = self.ALL_CLASS[class_name](**value)
+                        self.__objects[key] = new_instance
+            except FileNotFoundError:
+                pass
