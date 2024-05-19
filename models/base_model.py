@@ -19,7 +19,10 @@ class BaseModel:
                 if key != '__class__':
                     try:
                         setattr(self, key, value)
-                    except raise ValueError
+                    except ValueError:
+                        raise ValueError(
+                                "Invalid value for {}: {}".formate(key, value)
+                                ) 
 
         else:
             self.id = str(uuid4())

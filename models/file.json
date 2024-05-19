@@ -1,0 +1,10 @@
+{
+  "BaseModel.9f239a28-ba47-4ace-a553-ac5e2b4c17c2": {
+    "id": "9f239a28-ba47-4ace-a553-ac5e2b4c17c2",
+    "created_at": "2024-05-19T11:37:29.392357",
+    "updated_at": "2024-05-19T11:37:29.392389",
+    "name": "My_First_Model",
+    "my_number": 89,
+    "__class__": "BaseModel"
+  }
+}
