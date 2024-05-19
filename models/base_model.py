@@ -51,4 +51,3 @@ class BaseModel:
         air_dict['created_at'] = self.created_at.isoformat()
         air_dict['updated_at'] = self.updated_at.isoformat()
         return air_dict
-    

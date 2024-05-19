@@ -1,0 +1,10 @@
+{
+  "BaseModel.cc54bf45-1810-49cb-ab47-97954d6aeac6": {
+    "id": "cc54bf45-1810-49cb-ab47-97954d6aeac6",
+    "created_at": "2024-05-19T15:01:02.499032",
+    "updated_at": "2024-05-19T15:01:02.499458",
+    "name": "My First Model",
+    "my_number": 89,
+    "__class__": "BaseModel"
+  }
+}
