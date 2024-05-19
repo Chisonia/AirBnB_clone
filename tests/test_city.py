@@ -7,7 +7,6 @@ from datetime import datetime
 from uuid import uuid4
 
 
-
 class TestCity(unittest.TestCase):
     def layOut(self):
         '''Set up test methods'''
@@ -60,10 +59,15 @@ class TestCity(unittest.TestCase):
         city_dict = self.city.to_dict()
         self.assertEqual(city_dict['__class__'], 'City')
         self.assertEqual(city_dict['id'], self.city.id)
-        self.assertEqual(city_dict['created_at'], self.city.created_at.isoformat())
-        self.assertEqual(city_dict['updated_at'], self.city.updated_at.isoformat())
+        self.assertEqual(
+                city_dict['created_at'], self.city.created_at.isoformat()
+                )
+        self.assertEqual(
+                city_dict['updated_at'], self.city.updated_at.isoformat()
+                )
         self.assertEqual(city_dict['state_id'], self.city.state_id)
         self.assertEqual(city_dict['name'], self.city.name)
+
 
 if __name__ == '__main__':
     unittest.main()

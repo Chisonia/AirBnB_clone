@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''This module is the City class'''
-from models.base_model import BaseModel 
+from models.base_model import BaseModel
 
 
 class City(BaseModel):
@@ -15,4 +15,4 @@ class City(BaseModel):
     def __str__(self):
         '''Return string representation of City instance'''
         city = '[City] ({}) {}'.format(self.id, self.__dict__)
-        return 
+        return

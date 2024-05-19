@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''This module is the Place class'''
-from models.base_model import BaseModel 
+from models.base_model import BaseModel
 
 
 class Place(BaseModel):

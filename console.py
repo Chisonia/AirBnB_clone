@@ -4,25 +4,25 @@ import cmd
 import models
 import models.engine
 import models.engine.file_storage
+
+
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
-    
-    def do_quit(self, arg):
-            '''Quit command to exit the program'''
-            return True
 
-    
+    def do_quit(self, arg):
+        '''Quit command to exit the program'''
+        return True
+
     def do_EOF(self, arg):
-            '''Exit the program 
-            and print a newline 
-            '''
-            print('')  
-            return True
+        '''Exit the program
+        and print a newline
+        '''
+        print('')
+        return True
 
     def emptyline(self):
-            '''Do nothing on empty line'''
-            pass
-    
+        '''Do nothing on empty line'''
+        pass
 
     def do_create(self, arg):
         '''Create a new instance of the specified class'''
@@ -35,12 +35,12 @@ class HBNBCommand(cmd.Cmd):
             print('** class does not exist **')
             return
         try:
-            new_instance = models.engine.file_storage.FileStorage.ALL_CLASS[class_name]()
+            new_instance = models.engine.file_storage
+            .FileStorage.ALL_CLASS[class_name]()
             new_instance.save()
             print(new_instance.id)
         except Exception as e:
             print('** {}'.format(e))
-
 
     def do_show(self, arg):
         '''Show information of a specific instance'''
@@ -121,8 +121,13 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in models.engine.file_storage.FileStorage.ALL_CLASS:
             print('** class does not exist **')
             return
-        instances = [str(obj) for obj in models.storage.all().values() if type(obj).__name__ == class_name]
-        print(instances)      
+        instances = [
+                str(obj)
+                for obj in models.storage.all().values()
+                if type(obj).__name__ == class_name
+                ]
+        print(instances)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

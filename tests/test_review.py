@@ -80,11 +80,9 @@ class TestReview(unittest.TestCase):
             )
         self.assertEqual(
             review_dict['place_id'], self.review.place_id)
-        self.assertEqual(review_dict['user_id'], self.review.user_id
-                         )
+        self.assertEqual(review_dict['user_id'], self.review.user_id)
         self.assertEqual(review_dict['text'], self.review.text)
 
 
 if __name__ == '__main__':
-    unittest.main() 
- 
+    unittest.main()

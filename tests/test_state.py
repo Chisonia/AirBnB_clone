@@ -42,7 +42,9 @@ class TestState(unittest.TestCase):
 
     def test_str(self):
         '''Test __str__ method'''
-        state_str = '[State] ({}) {}'.format(self.state.id, self.state.__dict__)
+        state_str = '[State] ({}) {}'.format(
+                self.state.id, self.state.__dict__
+                )
         self.assertEqual(str(self.state), state_str)
 
     def test_save(self):
@@ -56,9 +58,14 @@ class TestState(unittest.TestCase):
         state_dict = self.state.to_dict()
         self.assertEqual(state_dict['__class__'], 'State')
         self.assertEqual(state_dict['id'], self.state.id)
-        self.assertEqual(state_dict['created_at'], self.state.created_at.isoformat())
-        self.assertEqual(state_dict['updated_at'], self.state.updated_at.isoformat())
+        self.assertEqual(
+                state_dict['created_at'], self.state.created_at.isoformat()
+                )
+        self.assertEqual(
+                state_dict['updated_at'], self.state.updated_at.isoformat()
+                )
         self.assertEqual(state_dict['name'], self.state.name)
+
 
 if __name__ == '__main__':
     unittest.main()
