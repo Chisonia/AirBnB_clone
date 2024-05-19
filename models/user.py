@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 '''This module is the User class'''
-from models.base_model import BaseModel 
+from models.base_model import BaseModel
+
 
 class User(BaseModel):
     '''User class inherits from BaseModel'''
