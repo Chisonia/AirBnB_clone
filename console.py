@@ -35,12 +35,10 @@ class HBNBCommand(cmd.Cmd):
             print('** class does not exist **')
             return
         try:
-            new_instance = models
-            .engine
-            .file_storage
-            .FileStorage.ALL_CLASS[class_name]()
-            new_instance.save()
-            print(new_instance.id)
+            new_inst = models.engine.file_storage.FileStorage.ALL_CLASS[
+                    class_name]()
+            new_inst.save()
+            print(new_inst.id)
         except Exception as e:
             print('** {}'.format(e))
 
@@ -123,11 +121,11 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in models.engine.file_storage.FileStorage.ALL_CLASS:
             print('** class does not exist **')
             return
-        instances = [
-                str(obj)
-                for obj in models.storage.all().values()
-                if type(obj).__name__ == class_name
+        all_objects = models.storage.all().values()
+        filtered_objects = [
+                obj for obj in all_objects if type(obj).__name__ == class_name
                 ]
+        instances = [str(obj) for obj in filtered_objects]
         print(instances)
 
 
