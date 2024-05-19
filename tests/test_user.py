@@ -8,11 +8,11 @@ from uuid import uuid4
 
 
 class TestUser(unittest.TestCase):
-    def layOut(self):
+    def setUp(self):
         '''Set up test methods'''
         self.user = User()
 
-    def test_inherit(self):
+    def test_inheritance(self):
         '''Test that User inherits from BaseModel'''
         self.assertIsInstance(self.user, User)
         self.assertTrue(issubclass(type(self.user), BaseModel))

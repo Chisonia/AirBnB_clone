@@ -10,7 +10,7 @@ import models
 
 
 class TestBaseModel(unittest.TestCase):
-    def layOut(self):
+    def setUp(self):
         '''Set up test methods'''
         self.base_model = BaseModel()
 

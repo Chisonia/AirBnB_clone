@@ -8,11 +8,12 @@ from uuid import uuid4
 
 
 class TestAmenity(unittest.TestCase):
-    def layOut(self):
+    def setUp(self):
         '''Set up test methods'''
         self.amenity = Amenity()
+        print(self.amenity)
 
-    def test_inherit(self):
+    def test_inheritance(self):
         '''Test that Amenity inherits from BaseModel'''
         self.assertIsInstance(self.amenity, Amenity)
         self.assertTrue(issubclass(type(self.amenity), BaseModel))

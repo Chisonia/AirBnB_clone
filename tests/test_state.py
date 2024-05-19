@@ -8,11 +8,11 @@ from uuid import uuid4
 
 
 class TestState(unittest.TestCase):
-    def layOut(self):
+    def setUp(self):
         '''Set up test methods'''
         self.state = State()
 
-    def test_inherit(self):
+    def test_inheritance(self):
         '''Test that State inherits from BaseModel'''
         self.assertIsInstance(self.state, State)
         self.assertTrue(issubclass(type(self.state), BaseModel))
@@ -42,21 +42,27 @@ class TestState(unittest.TestCase):
 
     def test_str(self):
         '''Test __str__ method'''
-        state_str = '[State] ({}) {}'.format(self.state.id, self.state.__dict__)
+        state_str = '[State] ({}) {}'.format(
+            self.state.id, self.state.__dict__
+            )
         self.assertEqual(str(self.state), state_str)
 
     def test_save(self):
         '''Test save method'''
         prev_updated_at = self.state.updated_at
         self.state.save()
-        self.assertNotEqual(self.state.updated_at, prev_updated_at)
+        self.assertNotEqual(
+            self.state.updated_at, prev_updated_at
+            )
 
     def test_to_dict(self):
         '''Test to_dict method'''
         state_dict = self.state.to_dict()
         self.assertEqual(state_dict['__class__'], 'State')
         self.assertEqual(state_dict['id'], self.state.id)
-        self.assertEqual(state_dict['created_at'], self.state.created_at.isoformat())
+        self.assertEqual(
+            state_dict['created_at'], self.state.created_at.isoformat()
+            )
         self.assertEqual(state_dict['updated_at'], self.state.updated_at.isoformat())
         self.assertEqual(state_dict['name'], self.state.name)
 
