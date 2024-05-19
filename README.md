@@ -1,0 +1,1 @@
+An AirBnB clone involves building a system that can manage users, listings, bookings, and reviews. The console component is a command-line interface (CLI) application that allows users to interact with the system by typing commands. This console is crucial for managing and testing the backend before integrating with a web interface.
