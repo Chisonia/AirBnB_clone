@@ -7,7 +7,6 @@ from uuid import uuid4
 
 class BaseModel:
     def __init__(self, *args, **kwargs):
-
         '''
         Initializing parent class Base Model
         Creating attributes id, created_at, and updated_at
@@ -19,29 +18,25 @@ class BaseModel:
                 if key != '__class__':
                     try:
                         setattr(self, key, value)
-                    except:
+                    except ValueError:
                         raise ValueError
-
-           
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             models.storage.new(self)
-        
-
 
     def __str__(self) -> str:
-       '''Function to return attribute as string'''
+        '''Function to return attribute as string'''
+        return "[{}] ({}) {}".format(
+                self.__class__.__name__, self.id, self.__dict__
+                )
 
-       return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
-    
     def save(self) -> None:
         '''method to save updated data'''
         self.updated_at = datetime.now()
         '''call save(self) method of storage'''
         models.storage.save()
-
 
     def to_dict(self):
 
