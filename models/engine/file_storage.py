@@ -17,51 +17,29 @@ import os
 
 
 class FileStorage:
-    ALL_CLASS = {
-            "BaseModel": BaseModel,
-            "User": User,
-            "Place": Place,
-            "Review": Review,
-            "State": State,
-            "City": City,
-            "Amenity": Amenity
-            }
     __file_path = os.path.join("./models", "file.json")
     __objects = {}
 
     def all(self):
-        '''
-        Public instance method that
-        returns the dictionary __objects
-        '''
         return self.__objects
 
     def new(self, obj):
-        '''
-        sets in __objects the obj with key <obj class name>.id
-        '''
-        obj_dict = obj.to_dict()
-        key = "{}.{}".format(obj_dict['__class__'], str(obj.id))
-        FileStorage.__objects[key] = obj
+        key = f"{obj.__class__.__name__}.{obj.id}"
+        self.__objects[key] = obj
 
     def save(self):
-        '''
-        serializes __objects to the JSON file (path: __file_path)
-        '''
-        obj_serialized = {}
-        for key, value in self.__objects.items():
-            obj_serialized[key] = value.to_dict()
-            with open(self.__file_path, "w") as file:
-                json.dump(obj_serialized, file, indent=2)
+        obj_dict = {key: obj.to_dict() for key, obj in self.__objects.items()}
+        with open(self.__file_path, 'w') as f:
+            json.dump(obj_dict, f)
 
     def reload(self):
         try:
-            with open(self.__file_path, "r") as file:
-                obj_content = json.load(file)
-                for key, value in obj_content.items():
-                    class_name = value.get("__class__")
-                    if class_name in self.ALL_CLASS:
-                        new_instance = self.ALL_CLASS[class_name](**value)
-                        self.__objects[key] = new_instance
+            with open(self.__file_path, 'r') as f:
+                obj_dict = json.load(f)
+                for key, value in obj_dict.items():
+                    cls_name = value['__class__']
+                    cls = globals().get(cls_name)
+                    if cls:
+                        self.__objects[key] = cls(**value)
         except FileNotFoundError:
             pass
