@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 '''The module is the Base Model class which is the parent class'''
-import models
+
 from datetime import datetime
 from uuid import uuid4
 
 
 class BaseModel:
     def __init__(self, *args, **kwargs):
-
         '''
         Initializing parent class Base Model
         Creating attributes id, created_at, and updated_at
@@ -21,11 +20,11 @@ class BaseModel:
                         setattr(self, key, value)
                     except ValueError:
                         raise ValueError
-
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            import models
             models.storage.new(self)
 
     def __str__(self) -> str:
@@ -38,6 +37,7 @@ class BaseModel:
         '''method to save updated data'''
         self.updated_at = datetime.now()
         '''call save(self) method of storage'''
+        import models
         models.storage.save()
 
     def to_dict(self):
