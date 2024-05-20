@@ -6,6 +6,7 @@ import json
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 
+
 class TestFileStorage(unittest.TestCase):
     def setUp(self):
         """Set up test environment"""
@@ -17,7 +18,7 @@ class TestFileStorage(unittest.TestCase):
         if os.path.exists(self.file_path):
             os.remove(self.file_path)
 
-    def tearDown(self):
+    def destroy(self):
         """Tear down test environment"""
         # Clean up created file.json after each test
         if os.path.exists(self.file_path):
@@ -49,7 +50,7 @@ class TestFileStorage(unittest.TestCase):
         obj = BaseModel()
         self.storage.new(obj)
         self.storage.save()
-        self.storage._FileStorage__objects = {}  # Clear current objects
+        self.storage._FileStorage__objects = {}
         self.storage.reload()
         key = "BaseModel." + obj.id
         self.assertIn(key, self.storage.all())
@@ -61,6 +62,7 @@ class TestFileStorage(unittest.TestCase):
     def test_objects(self):
         """Test objects attribute"""
         self.assertEqual(self.storage._FileStorage__objects, self.objects)
+
 
 if __name__ == '__main__':
     unittest.main()

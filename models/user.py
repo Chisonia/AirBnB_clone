@@ -13,8 +13,3 @@ class User(BaseModel):
         self.password = kwargs.get('password', '')
         self.first_name = kwargs.get('first_name', '')
         self.last_name = kwargs.get('last_name', '')
-
-    def __str__(self):
-        '''Return string representation of User instance'''
-        user = "[User] ({}) {}".format(self.id, self.__dict__)
-        return user

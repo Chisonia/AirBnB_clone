@@ -10,8 +10,3 @@ class State (BaseModel):
         '''Initialize State instance'''
         super().__init__(*args, **kwargs)
         self.name = kwargs.get('name', '')
-
-    def __str__(self):
-        '''Return string representation of State instance'''
-        state = "[State] ({}) {}".format(self.id, self.__dict__)
-        return state
