@@ -33,7 +33,7 @@ class BaseModel:
                 self.__class__.__name__, self.id, self.__dict__
                 )
 
-    def save(self) -> None:
+    def save(self):
         '''method to save updated data'''
         self.updated_at = datetime.now()
         '''call save(self) method of storage'''
