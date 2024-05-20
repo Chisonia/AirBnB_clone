@@ -1,133 +1,123 @@
 #!/usr/bin/python3
 '''This module is the console'''
 import cmd
-import models
-import models.engine
-import models.engine.file_storage
+from models import storage
+from models.base_model import BaseModel
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
-    def do_quit(self, arg):
-        '''Quit command to exit the program'''
-        return True
-
-    def do_EOF(self, arg):
-        '''Exit the program
-        and print a newline
-        '''
-        print('')
-        return True
-
-    def emptyline(self):
-        '''Do nothing on empty line'''
-        pass
+    classes = {
+        'BaseModel': BaseModel,
+        'Place': Place,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Review': Review
+    }
 
     def do_create(self, arg):
-        '''Create a new instance of the specified class'''
-        args = arg.split()
-        if not args:
-            print('** class name missing **')
+        if not arg:
+            print("** class name missing **")
             return
-        class_name = args[0]
-        if class_name not in models.engine.file_storage.FileStorage.ALL_CLASS:
-            print('** class does not exist **')
+        if arg not in self.classes:
+            print("** class doesn't exist **")
             return
-        try:
-            new_inst = models.engine.file_storage.FileStorage.ALL_CLASS[
-                    class_name]()
-            new_inst.save()
-            print(new_inst.id)
-        except Exception as e:
-            print('** {}'.format(e))
+        new_instance = self.classes[arg]()
+        new_instance.save()
+        print(new_instance.id)
 
     def do_show(self, arg):
-        '''Show information of a specific instance'''
         args = arg.split()
         if not args:
-            print('** class name missing **')
+            print("** class name missing **")
             return
-        class_name = args[0]
-        if class_name not in models.engine.file_storage.FileStorage.ALL_CLASS:
-            print('** class does not exist **')
+        if args[0] not in self.classes:
+            print("** class doesn't exist **")
             return
         if len(args) < 2:
-            print('** instance id missing **')
+            print("** instance id missing **")
             return
-        instance_id = args[1]
-        key = class_name + '.' + instance_id
-        if key not in models.storage.all():
-            print('** no instance found **')
+        key = f"{args[0]}.{args[1]}"
+        if key not in storage.all():
+            print("** no instance found **")
             return
-        print(models.storage.all()[key])
+        print(storage.all()[key])
 
     def do_destroy(self, arg):
-        '''Delete a specific instance'''
         args = arg.split()
         if not args:
-            print('** class name missing **')
+            print("** class name missing **")
             return
-        class_name = args[0]
-        if class_name not in models.engine.file_storage.FileStorage.ALL_CLASS:
-            print('** class does not exist **')
-            return
-        if len(args) < 2:
-            print(** 'instance id missing **')
-            return
-        instance_id = args[1]
-        key = class_name + "." + instance_id
-        if key not in models.storage.all():
-            print('** no instance found **')
-            return
-        del models.storage.all()[key]
-        models.storage.save()
-
-    def do_update(self, arg):
-        '''Update attributes of a specific instance'''
-        args = arg.split()
-        if not args:
-            print('** class name missing **')
-            return
-        class_name = args[0]
-        if class_name not in models.engine.file_storage.FileStorage.ALL_CLASS:
-            print('** class does not exist **')
+        if args[0] not in self.classes:
+            print("** class doesn't exist **")
             return
         if len(args) < 2:
-            print('** instance id missing **')
+            print("** instance id missing **")
             return
-        instance_id = args[1]
-        key = class_name + '.' + instance_id
-        if key not in models.storage.all():
-            print('** no instance found **')
+        key = f"{args[0]}.{args[1]}"
+        if key not in storage.all():
+            print("** no instance found **")
             return
-        if len(args) < 3:
-            print('** attribute name missing **')
-            return
-        if len(args) < 4:
-            print('** value missing **')
-            return
-        obj = models.storage.all()[key]
-        setattr(obj, args[2], args[3])
-        models.storage.save()
+        del storage.all()[key]
+        storage.save()
 
     def do_all(self, arg):
-        '''Show all instances of a specified class'''
+        if arg and arg not in self.classes:
+            print("** class doesn't exist **")
+            return
+        objs = storage.all()
+        obj_list = []
+        for key, obj in objs.items():
+            if not arg or key.startswith(arg):
+                obj_list.append(str(obj))
+        print(obj_list)
+
+    def do_update(self, arg):
         args = arg.split()
-        if not args:
-            print('** class name missing **')
+        if len(args) < 4:
+            print("** class name missing **")
             return
-        class_name = args[0]
-        if class_name not in models.engine.file_storage.FileStorage.ALL_CLASS:
-            print('** class does not exist **')
+        if args[0] not in self.classes:
+            print("** class doesn't exist **")
             return
-        all_objects = models.storage.all().values()
-        filtered_objects = [
-                obj for obj in all_objects if type(obj).__name__ == class_name
-                ]
-        instances = [str(obj) for obj in filtered_objects]
-        print(instances)
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        key = f"{args[0]}.{args[1]}"
+        if key not in storage.all():
+            print("** no instance found **")
+            return
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+        if len(args) < 4:
+            print("** value missing **")
+            return
+        obj = storage.all()[key]
+        setattr(obj, args[2], args[3])
+        obj.save()
+
+    def emptyline(self):
+        pass
+
+    def default(self, line):
+        """Handle unrecognized commands"""
+        if '.' in line:
+            parts = line.split('.')
+            if (len(parts) == 2 and
+                    parts[1] == 'all()' and
+                    parts[0] in self.classes):
+                self.do_all(parts[0])
+                return
+        print(f"*** Unknown syntax: {line}")
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     HBNBCommand().cmdloop()
