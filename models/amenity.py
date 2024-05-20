@@ -10,8 +10,3 @@ class Amenity(BaseModel):
         '''Initialize Amenity instance'''
         super().__init__(*args, **kwargs)
         self.name = kwargs.get('name', '')
-
-    def __str__(self):
-        '''Return string representation of Amenity instance'''
-        amenity = '[Amenity] ({}) {}'.format(self.id, self.__dict__)
-        return amenity
