@@ -20,6 +20,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(model.created_at, datetime)
         self.assertTrue(hasattr(model, "created_at"))
 
+    def test_updated_at(self):
+        model = BaseModel()
+        self.assertIsInstance(model.updated_at, datetime)
+        self.assertTrue(hasattr(model, "updated_at"))
+
     def test_save(self):
         model = BaseModel()
         old_updated_at = model.updated_at
