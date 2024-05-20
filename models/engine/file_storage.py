@@ -6,7 +6,6 @@
   and __objects empty dict that will store all objects by <class name>.id
   '''
 from models.base_model import BaseModel
-from models.user import User
 from models.place import Place
 from models.amenity import Amenity
 from models.city import City
@@ -18,7 +17,6 @@ import os
 
 class FileStorage:
     """Class for serializing and deserializing instances"""
-
     __file_path = os.path.join("./models", "file.json")
     __objects = {}
 
@@ -42,10 +40,9 @@ class FileStorage:
 
     def save(self):
         """Serialize __objects to the JSON file (path: __file_path)"""
-        obj_serialized = {}
-        for key, value in self.__objects.items():
-            obj_serialized[key] = value.to_dict()
-
+        obj_serialized = {
+            key: value.to_dict() for key, value in self.__objects.items()
+            }
         with open(self.__file_path, "w") as file:
             json.dump(obj_serialized, file, indent=2)
 
@@ -54,10 +51,8 @@ class FileStorage:
         try:
             with open(self.__file_path, "r") as file:
                 obj_content = json.load(file)
-
                 for key, value in obj_content.items():
                     class_name = value.get("__class__")
-
                     if class_name in self.classes:
                         new_instance = self.classes[class_name](**value)
                         self.__objects[key] = new_instance
