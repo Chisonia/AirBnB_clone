@@ -22,9 +22,9 @@ class TestReview(unittest.TestCase):
         self.assertIsInstance(self.review.id, str)
         self.assertIsInstance(self.review.created_at, datetime)
         self.assertIsInstance(self.review.updated_at, datetime)
-        self.assertIsInstance(self.review.place_id, '')
-        self.assertIsInstance(self.review.user_id, '')
-        self.assertIsInstance(self.review.text, '')
+        self.assertIsInstance(self.review.place_id, str)
+        self.assertIsInstance(self.review.user_id, str)
+        self.assertIsInstance(self.review.text, str)
 
     def test_init_with_kwargs(self):
         '''Test __init__ with kwargs'''

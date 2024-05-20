@@ -12,8 +12,3 @@ class Review(BaseModel):
         self.place_id = kwargs.get('place_id', '')
         self.user_id = kwargs.get('user_id', '')
         self.text = kwargs.get('text', '')
-
-    def __str__(self):
-        '''Return string representation of Review instance'''
-        review = "[Review] ({}) {}".format(self.id, self.__dict__)
-        return review
