@@ -19,12 +19,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """Exit the program"""
-        print('')
+        print()
         return True
-
-    def emptyline(self):
-        """Do nothing on empty line"""
-        pass
 
     def do_create(self, arg):
         """Create a new instance of the specified class"""
