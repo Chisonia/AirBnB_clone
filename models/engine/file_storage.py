@@ -22,14 +22,13 @@ class FileStorage:
     __objects = {}
     classes = {
         'BaseModel': BaseModel,
-        'User' : User,
+        'User': User,
         'Place': Place,
         'State': State,
         'City': City,
         'Amenity': Amenity,
         'Review': Review
         }
-
 
     def all(self):
         """Return the dictionary __objects"""
@@ -47,7 +46,6 @@ class FileStorage:
             }
         with open(self.__file_path, "w", encoding='utf-8') as file:
             json.dump(obj_serialized, file, indent=2)
-
 
     def reload(self):
         """Deserialize the JSON file to __objects"""

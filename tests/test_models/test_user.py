@@ -31,5 +31,6 @@ class TestUser(unittest.TestCase):
         self.assertTrue(issubclass(User, BaseModel))
         self.assertIsInstance(self.user, BaseModel)
 
+
 if __name__ == '__main__':
     unittest.main()

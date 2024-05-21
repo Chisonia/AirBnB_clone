@@ -17,11 +17,14 @@ class FileStorage(unittest.TestCase):
         objects = self.storage.all()
         self.assertIsInstance(objects, dict)
         self.assertIn('BaseModel.{}'.format(self.base_model.id), objects)
-        self.assertEqual(objects['BaseModel.{}'.format(self.base_model.id)], self.base_model)
+        self.assertEqual(
+            objects['BaseModel.{}'.format(self.base_model.id)], self.base_model
+            )
 
     def test_objects_attribute(self):
         """Test that __objects is a dictionary"""
         self.assertIsInstance(self.storage._FileStorage__objects, dict)
+
 
 if __name__ == '__main__':
     unittest.main()
