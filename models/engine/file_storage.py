@@ -6,6 +6,7 @@
   and __objects empty dict that will store all objects by <class name>.id
   '''
 from models.base_model import BaseModel
+from models.user import User
 from models.place import Place
 from models.amenity import Amenity
 from models.city import City
@@ -22,6 +23,7 @@ class FileStorage:
 
     classes = {
         'BaseModel': BaseModel,
+        'User' : User,
         'Place': Place,
         'State': State,
         'City': City,
