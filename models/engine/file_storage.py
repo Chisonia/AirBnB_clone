@@ -18,12 +18,12 @@ import os
 
 class FileStorage:
     """Class for serializing and deserializing instances"""
-    __file_path = "file.json"
+    __file_path = os.path.join("./models", "file.json")
     __objects = {}
 
     classes = {
         'BaseModel': BaseModel,
-        'User': User,
+        'User' : User,
         'Place': Place,
         'State': State,
         'City': City,
@@ -42,7 +42,9 @@ class FileStorage:
 
     def save(self):
         """Serialize __objects to the JSON file (path: __file_path)"""
-        obj_serialized = {key: value.to_dict() for key, value in self.__objects.items()}
+        obj_serialized = {
+            key: value.to_dict() for key, value in self.__objects.items()
+            }
         with open(self.__file_path, "w") as file:
             json.dump(obj_serialized, file, indent=2)
 
