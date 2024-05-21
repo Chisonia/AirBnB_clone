@@ -96,8 +96,13 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in storage.classes:
             print("** class doesn't exist **")
             return
-        objects = storage.classes[class_name].all()
-        print(objects.values())
+        # Fetch all objects from storage
+        all_objects = storage.all()
+        objects_list = []
+        for key, obj in all_objects.items():
+            if key.startswith(class_name + '.'):
+                objects_list.append(str(obj))
+        print(objects_list)
 
 
 if __name__ == "__main__":
