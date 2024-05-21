@@ -6,10 +6,15 @@ from models.base_model import BaseModel
 class User(BaseModel):
     '''User class inherits from BaseModel'''
 
-    def __init__(self, *args, **kwargs):
-        '''Initialize User instance'''
-        super().__init__(*args, **kwargs)
-        self.email = kwargs.get('email', '')
-        self.password = kwargs.get('password', '')
-        self.first_name = kwargs.get('first_name', '')
-        self.last_name = kwargs.get('last_name', '')
+    def __init__(self, username, email):
+        self.username = username
+        self.email = email
+        
+    def update_email(self, new_email):
+        self.email = new_email
+
+    def __str__(self) -> str:
+        return 'Username: {}, Email: {}'.format(self.username, self.email)
+
+
+        
