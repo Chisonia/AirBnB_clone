@@ -20,6 +20,15 @@ class FileStorage:
     """Class for serializing and deserializing instances"""
     __file_path = os.path.join("./models", "file.json")
     __objects = {}
+    classes = {
+        'BaseModel': BaseModel,
+        'User' : User,
+        'Place': Place,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Review': Review
+        }
 
 
     def all(self):
@@ -39,26 +48,16 @@ class FileStorage:
         with open(self.__file_path, "w", encoding='utf-8') as file:
             json.dump(obj_serialized, file, indent=2)
 
-    def all_classes(self):
-        '''Returns a dictionary of valid classes and their references'''
-        classes = {
-        'BaseModel': BaseModel,
-        'User' : User,
-        'Place': Place,
-        'State': State,
-        'City': City,
-        'Amenity': Amenity,
-        'Review': Review
-        }
-        return classes
 
     def reload(self):
         """Deserialize the JSON file to __objects"""
         try:
             with open(self.__file_path, "r", encoding='utf-8') as file:
                 obj_content = json.load(file)
-                obj_content = {key: self.classes()[value['__class__']](**value)
-                               for key, value in obj_content}
-                self.__objects = obj_content
+                for key, value in obj_content.items():
+                    class_name = value.get("__class__")
+                    if class_name in self.classes:
+                        new_instance = self.classes[class_name](**value)
+                        self.__objects[key] = new_instance
         except FileNotFoundError:
             pass
