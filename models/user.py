@@ -6,15 +6,14 @@ from models.base_model import BaseModel
 class User(BaseModel):
     '''User class inherits from BaseModel'''
 
-    def __init__(self, username, email):
-        self.username = username
+    def __init__(self, email, password, first_name, last_name):
         self.email = email
-        
-    def update_email(self, new_email):
-        self.email = new_email
-
+        self.password = password
+        self.first_name = first_name
+        self.last_name = last_name
+           
     def __str__(self) -> str:
-        return 'Username: {}, Email: {}'.format(self.username, self.email)
-
+        return 'email: {}, firstname: {}, last_name: {}, password: {}'.format(
+            self.email, self.first_name, self.last_name, self.password)
 
         
