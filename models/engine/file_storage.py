@@ -23,7 +23,7 @@ class FileStorage:
 
     classes = {
         'BaseModel': BaseModel,
-        'User' : User,
+        'User': User,
         'Place': Place,
         'State': State,
         'City': City,
@@ -44,7 +44,7 @@ class FileStorage:
         """Serialize __objects to the JSON file (path: __file_path)"""
         obj_serialized = {
             key: value.to_dict() for key, value in self.__objects.items()
-            }
+        }
         with open(self.__file_path, "w") as file:
             json.dump(obj_serialized, file, indent=2)
 
