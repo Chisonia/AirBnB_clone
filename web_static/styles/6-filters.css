@@ -9,6 +9,7 @@
     justify-content: space-between; /* Distributes the items with space between them */
     padding: 0 15px;
     box-sizing: border-box; 
+    position: relative;
 }
 .filters button{
     font-size: 18px;
@@ -32,6 +33,7 @@
     flex-direction: column;
     justify-content: center;
     color: black;
+    position: relative;
 }
 .filters .locations {
     border-right: 1px solid #DDDDDD;
@@ -46,4 +48,30 @@
     font-weight: 400;
     font-size: 14px;
     margin: 0;
+}
+.filters .popover{
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    width: 100%;
+    list-style: none; /*no list display*/
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.filters .locations:hover .popover,
+.filters .amenities:hover .popover {
+    display: block;
+}
+.filters .popover h2 {
+    font-size: 16px;
+    margin: 0 0 5px;
+}
+.filters .popover li {
+    margin: 5px 0;
 }
