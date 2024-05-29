@@ -7,23 +7,23 @@
     display: flex;
     align-items: center; /* Centers the items vertically */
     justify-content: space-between; /* Distributes the items with space between them */
-    padding: 0 15px;
+    padding: 0 2%;
     box-sizing: border-box; 
     position: relative;
 }
 .filters button{
     font-size: 18px;
-    background-color: #FF5A5F;
+    background-color: #03031c;
     color: #FFFFFF;
-    height: 48px;
+    height: 70%;
     width: 20%;
     border: none;
     border-radius: 4px;
-    margin-right: 30px;
+    margin-right: 2%;
     transition: opacity 0.3s ease;
 }
 .filters button:hover{
-    opacity: 90%;
+    opacity: 80%;
 }
 
 .filters .locations, .filters .amenities {
@@ -35,9 +35,13 @@
     color: black;
     position: relative;
 }
-.filters .locations {
+.filters .locations, .filters .amenities {
     border-right: 1px solid #DDDDDD;
-    margin-left: 30px;
+    margin-left: 2%;
+}
+.filters .amenities {
+    border-right: 1px solid #DDDDDD;
+    margin-right: 18%;
 }
 .filters h3 {
     font-weight: 600;
@@ -52,14 +56,13 @@
 .filters .popover{
     display: none;
     position: absolute;
-    top: 70px;
-    left: 0;
+    top: 80%;
     background-color: #FAFAFA;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
     width: 100%;
     list-style: none; /*no list display*/
-    padding: 10px;
+    padding: 1%;
     box-sizing: border-box;
     z-index: 10;
 }
@@ -70,8 +73,21 @@
 }
 .filters .popover h2 {
     font-size: 16px;
-    margin: 0 0 5px;
+    justify-content: flex-start;
+    display: flex;
+    padding-top: 8%;
+    padding-left: 8%;
+    padding-bottom: 1%;
 }
 .filters .popover li {
-    margin: 5px 0;
+    list-style: none; /*no list display*/
+    margin-bottom: 2%;
+    padding-bottom: 2%;
+    margin-left: 2%;
+}
+.filters .amenities .popover li {
+    list-style: none; /*no list display*/
+    margin-bottom: 2%;
+    padding-bottom: 2%;
+    margin-left: 8%;
 }
